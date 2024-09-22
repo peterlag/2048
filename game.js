@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const gridDisplay = document.querySelector('.grid-container');
     const scoreDisplay = document.querySelector('.score-container');
@@ -18,8 +19,84 @@ document.addEventListener("DOMContentLoaded", () => {
             gridDisplay.appendChild(tile);
             tiles.push(0);
         }
-        addNumber();
-        addNumber();
+
+        //se añade un numero 
+        let emptyTiles = [];
+        tiles.forEach((tile, index) => {
+            if (tile === 0) emptyTiles.push(index);
+        });
+        if (emptyTiles.length > 0) {
+            let randomNumber = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+            tiles[randomNumber] = 2;
+            tileContainer.innerHTML = '';
+            if(window.innerWidth > 530){
+                tiles.forEach((tile, index) => {
+                    if (tile !== 0) {
+                        let tileElement = document.createElement('div');
+                        tileElement.classList.add('tile');
+                        tileElement.classList.add(`tile-${tile}`);
+                        tileElement.innerText = tile;
+                        tileElement.style.top = `${Math.floor(index / 4) * 110}px`;
+                        tileElement.style.left = `${(index % 4) * 110}px`;
+                        tileContainer.appendChild(tileElement);
+                    }
+                });
+            } else {
+                tiles.forEach((tile, index) => {
+                    if (tile !== 0) {
+                        let tileElement = document.createElement('div');
+                        tileElement.classList.add('tile');
+                        tileElement.classList.add(`tile-${tile}`);
+                        tileElement.innerText = tile;
+                        tileElement.style.top = `${Math.floor(index / 4) * 80}px`;
+                        tileElement.style.left = `${(index % 4) * 80}px`;
+                        tileContainer.appendChild(tileElement);
+                    }
+                });
+            }
+        
+        checkForGameOver();
+        checkForWin();
+        }
+
+        //se añade otro numero
+        emptyTiles = [];
+        tiles.forEach((tile, index) => {
+            if (tile === 0) emptyTiles.push(index);
+        });
+        if (emptyTiles.length > 0) {
+            let randomNumber = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+            tiles[randomNumber] = 2;
+            tileContainer.innerHTML = '';
+            if(window.innerWidth > 530){
+                tiles.forEach((tile, index) => {
+                    if (tile !== 0) {
+                        let tileElement = document.createElement('div');
+                        tileElement.classList.add('tile');
+                        tileElement.classList.add(`tile-${tile}`);
+                        tileElement.innerText = tile;
+                        tileElement.style.top = `${Math.floor(index / 4) * 110}px`;
+                        tileElement.style.left = `${(index % 4) * 110}px`;
+                        tileContainer.appendChild(tileElement);
+                    }
+                });
+            } else {
+                tiles.forEach((tile, index) => {
+                    if (tile !== 0) {
+                        let tileElement = document.createElement('div');
+                        tileElement.classList.add('tile');
+                        tileElement.classList.add(`tile-${tile}`);
+                        tileElement.innerText = tile;
+                        tileElement.style.top = `${Math.floor(index / 4) * 80}px`;
+                        tileElement.style.left = `${(index % 4) * 80}px`;
+                        tileContainer.appendChild(tileElement);
+                    }
+                });
+            }
+        
+        checkForGameOver();
+        checkForWin();
+        }
     }
 
     // Add a number to the board
@@ -60,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         checkForGameOver();
         checkForWin();
-            //displayTiles();
         }
     }
 
